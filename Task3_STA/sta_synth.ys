@@ -1,0 +1,21 @@
+read_verilog -sv ../8Bit_ALU_RTL_Simulation.srcs/sources_1/new/alu_8bit.sv
+read_verilog -sv alu_sta_wrapper.sv
+
+hierarchy -top alu_sta_wrapper
+
+proc
+opt
+fsm
+opt
+memory
+opt
+techmap
+opt
+
+abc -g simple
+opt
+clean
+
+write_verilog -noattr alu_sta_netlist.v
+
+stat
